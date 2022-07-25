@@ -1,0 +1,29 @@
+{
+  "name": "mbp-flowchat",
+  "description": "MBP Flowchat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "qunit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/abel2319/MBP-Flowchat.git"
+  },
+  "keywords": [
+    "qunit",
+    "ayajs",
+    "flowchat",
+    "bpmn"
+  ],
+  "author": "Abel Kpohinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abel2319/MBP-Flowchat/issues"
+  },
+  "homepage": "https://github.com/abel2319/MBP-Flowchat#readme"
+}
