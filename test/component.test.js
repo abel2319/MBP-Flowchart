@@ -1,26 +1,3 @@
-
-
-
-
-class _CircleCreator{
-   static createForm(props){
-      return aya.Circle(props.x, props.y, props.r);
-   }
-}
-
-class _LozengeCreator{
-   static createForm(props){
-      return aya.Lozenge(props.x, props.y, props.width, props.height);
-   }
-}
-
-class _LineCreator{
-   static createForm(props){
-      return aya.Line(props.x, props.y, props.dest_x, props.dest_y);
-   }
-}
-global.Creator = _Creator;
-
 QUnit.module('Component');
 
 QUnit.test('create a component without parameter', (assert) =>{
