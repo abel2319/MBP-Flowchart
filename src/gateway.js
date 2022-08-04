@@ -1,7 +1,7 @@
 class Gateway{
     constructor(type = "exclusive"){
         this.type = type;
-        this.component = aya.Component("lozenge", {x:100, y:100, height:40, width:40});
+        this.component = aya.Component("lozenge", {x:200, y:100, height:40, width:40});
         this.events = {};
     }
     addEvent(event, callback){

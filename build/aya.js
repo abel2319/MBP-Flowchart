@@ -3113,6 +3113,8 @@
 
 	        this.text = text;
 
+	        this.type = 'text';
+
 	        this.svg = svg;
 	        this.c_svg = "";
 
@@ -3729,6 +3731,7 @@
 	            this.data.children.map((m)=>{
 	                aya.Ressource(this.x + this.delta, this.y + 50, this.r, this.arc_angle, m);
 	                this.delta = 200;
+
 	            });
 	        }
 	    }
@@ -3861,16 +3864,31 @@
 	}
 
 	class Image{
-	    constructor(x = 0, y = 0, width = 50, height = 50, path, svg){
+	    constructor(x = 0, y = 0, width = 50, height = 50, path, svg, event, config){
 	        this.width = width;
 	        this.height = height;
 	        this.x = x;
 	        this.y = y;
 	        this.path = path;
 	        this.c_svg = "";
+	        this.events = {};
+	        this.nativeEvent = event;
+	        this.config = config;
+	        this.type = 'image';
 	        this.svg = svg;
-	        this.draw();
 	    }
+
+	    addEvent(event, callback){
+	        this.c_svg.addEventListener(event, callback);
+	        this.events[event] = callback;
+	    }
+	    
+	    deleteEvent(event){
+	        var callback = this.events[event];
+	        this.c_svg.removeEventListener(event, callback);
+	        delete this.events[event];
+	    }
+
 
 	    draw(){
 	        this.c_svg = document.createElementNS('http://www.w3.org/2000/svg','image');
@@ -3879,7 +3897,20 @@
 	        this.c_svg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.path);
 	        this.c_svg.setAttributeNS(null,'x',this.x);
 	        this.c_svg.setAttributeNS(null,'y',this.y);
+
+	        this.addEvent("mousedown", this.nativeEvent.mouseDownCb);
+
 	        this.svg.append(this.c_svg);
+	    }
+
+	    shift(dx, dy){
+	        this.x += dx;
+	        this.y +=dy;
+	    }
+
+	    redraw(){
+	        this.c_svg.setAttributeNS(null,'x',this.x);
+	        this.c_svg.setAttributeNS(null,'y',this.y);
 	    }
 
 	    removeFromDOM(){
@@ -4017,6 +4048,14 @@
 	        this.svg.addEventListener("mouseup", this.events.mouseUpCb);
 	    }
 
+	    Register(){
+	        return _Register;
+	    }
+
+	    _uuid(){
+	        return _uuid;
+	    }
+
 	    Component(type, props){
 	        return new Component(type, props, this.svg, this.events, this.config);
 	    }
@@ -4066,7 +4105,7 @@
 	    }
 
 	    Image(x,y, width, height, path = ""){
-	        return new Image(x, y, width, height, path, this.svg);
+	        return new Image(x, y, width, height, path, this.svg, this.events, this.config);
 	    }
 	}
 

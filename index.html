@@ -21,17 +21,36 @@
 </head>
 <body>
     <div id="container">
+        <div id="container_home"></div>
         <script>
             var aya = new aya.Init();
             console.log(aya);
+            var back_id = "";
             var cp = new bpmnEvent();
-            var gw = new Gateway();
-            var ac = new Action();
-            ac.addEvent("mousedown", ac.showPanelTools);
-            cp.addEvent("mousedown", cp.showPanelTools);
-            //cp.addEvent("mousedown", (e)=>{console.log(e);});
-            document.body.append(aya.svg);
+            //var gw = new Gateway();
+            //var ac = new Action();
+            //var img = aya.Image(200, 150, 20, 20, "Images/circle.png");
+            //img.draw();
+            aya.svg.setAttribute("class", "aya");
+            console.log(aya.svg.getAttribute("class"));
+            document.getElementById("container_home").appendChild(aya.svg);
+            function name(comp) {
+                if (comp == "loz")
+                    var loz = new Gateway();
+                if (comp == "rect")
+                    var rect = new Action();
+                if (comp == "circ")
+                    var circ = new bpmnEvent();
+                //var img = aya.Image(400, 150, 20, 20, "Images/circle.png");
+            }
         </script>
-    </div>
+        <div class="tools">
+            <div class="tools_text">Tools</div>
+            <div class="rect" onclick="name('rect')"></div>
+            <div class="circ" onclick="name('circ')"></div>
+            <div class="loz" onclick="name('loz')"></div>
+        </div>
+        <div id="component" class=""></div>
+    </div>  
 </body>
 </html>

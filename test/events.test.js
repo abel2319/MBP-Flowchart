@@ -15,7 +15,7 @@ QUnit.test("default event created", (assert)=>{
 
 });
 
-QUnit.test("add an event onClick on a bpmn component", (assert) => {
+QUnit.test("add an event mousedown on a bpmn component", (assert) => {
     var cp = new bpmnEvent();
 
     function mousedowncb(e){
@@ -46,7 +46,7 @@ QUnit.test("create panel of tools when mousedown event is applied", (assert) => 
         assert.equal(cp.component.form.children[i].child.width, 20, "width of the first child",i,"must be 20");
         assert.equal(cp.component.form.children[i].child.height, 20, "height of child",i," must be 20");
         assert.equal(cp.component.form.children[i].child.x, center_x + circle_r + 5 + i * 20, "abscisse of child",i," must be", circle_r + 5);
-        assert.equal(cp.component.form.children[i].child.y, center_y, "ordinate of child",i," must be", center_y);
+        assert.equal(cp.component.form.children[i].child.y, center_y - circle_r, "ordinate of child",i," must be", center_y);
         i++;
     }
     /*

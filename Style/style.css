@@ -1,50 +1,85 @@
-.menu{
+html, body{
+    margin: auto;
+}
+
+.container_home{
     position: absolute;
     z-index: -1;
+    overflow: scroll;
+}
+.aya{
+    position: absolute;
+    
+}
+.tools{
+    background-color: #f7f7f8;
+    width: 75px;
+    height: 150px;
+    margin: 10px 0 0 10px;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+    border: 1px #e0e0e0 solid;
+    position: fixed;
+}
+
+.tools_text{
+    text-align: center;
+    border-bottom: 1px #e0e0e0 solid;
+    margin-bottom: 3px;
 }
 .rect{
-    width: 22px;
+    width: 25px;
     height: 22px;
     text-align: center;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 22px;
-    margin: 0 2px 2px 0;
-    border-radius: 7px;
+    margin: 0 1px 1px 24px;
+    border-radius: 4px;
     cursor: default;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #f7f7f8;
+    border: 1px solid black;
     /*box-shadow: 0 0 2px 1px black;*/
     pointer-events: all;
     vertical-align: middle;
 }
-.circl{
+.circ{
     width: 22px;
     height: 22px;
     text-align: center;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 22px;
-    margin: 0 2px 2px 0;
+    margin: 5px 2px 2px 25px;
     border-radius: 15px;
     cursor: default;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #f7f7f8;
+    border: 1px solid black;
     /*box-shadow: 0 0 2px 1px black;*/
     pointer-events: all;
     vertical-align: middle;
 }
 
 .loz{
-    width: 15px;
-    height: 15px;
+    width: 22px;
+    height: 22px;
     text-align: center;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 22px;
-    margin: 0 2px 2px 0;
+    margin: 10px 2px 2px 24px;
     cursor: default;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #f7f7f8;
+    border: 1px solid black;
     /*box-shadow: 0 0 2px 1px black;*/
     pointer-events: all;
     vertical-align: middle;
     transform: rotate(45deg);
+}
+
+.tool_panel{
+    visibility: hidden;
+}
+.component_panel{
+    display: inline-block;
+}
+
+.tool_panel{
+    display: inline-block;
 }
