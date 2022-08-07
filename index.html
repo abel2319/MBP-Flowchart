@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qunit@latest/qunit/qunit.css">
     <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="build/aya.js"></script>
     <script src="src/creator.js"></script>
     <script src="src/component.js"></script>
@@ -13,6 +14,7 @@
     <script src="src/creators/lozenge.js"></script>
     <script src="src/creators/line.js"></script>
     <script src="src/creators/circle.js"></script>
+    <script src="src/callback.js"></script>
     <script src="src/event.js"></script>
     <script src="src/gateway.js"></script>
     <script src="src/action.js"></script>
@@ -26,7 +28,9 @@
             var aya = new aya.Init();
             console.log(aya);
             var back_id = "";
-            var cp = new bpmnEvent();
+            //var se = new bpmnEvent();
+            var ie = new bpmnEvent("intermediate_event");
+            //var ee = new bpmnEvent("end_event");
             //var gw = new Gateway();
             //var ac = new Action();
             //var img = aya.Image(200, 150, 20, 20, "Images/circle.png");

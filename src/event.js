@@ -1,16 +1,37 @@
+
 class bpmnEvent{
-    constructor(type = "start_event"){
+    constructor(type = "start_event", x = 200, y = 150, r = 15){
         this.type = type;
         this.uuid = aya._uuid().generate();
-        this.component = aya.Component("circle", {x:200, y:100, r:15});
-        this.component.form.c_svg.setAttribute("stroke-width","2px");
+        this.component;
         this.events = {};
+
+        this.addComponent(x, y, r);
         this.addChildren();
-        this.addEvent("mousedown", this.showPanelTools);
+        this.addEvent("mouseover", Events.setup().mouseovercb);
         aya.Register().add(this);
         console.log(this);
     }
 
+    addComponent(u, v, w){
+        //var tmp = aya.Component("circle", {x:200, y:100, r:13});
+        if (this.type == "start_event"){
+            this.component = aya.Component("circle", {x:u, y:v, r:w});
+            this.component.form.c_svg.setAttribute("stroke-width","2px");
+        }
+        else if (this.type == "intermediate_event"){
+            this.component = aya.Component("circle", {x:u, y:(v - 50), r:w});
+            this.component.form.c_svg.setAttribute("stroke-width","2px");
+            /*this.component.form.addChild(tmp, (p, c)=>{
+                c.x = (p.x);
+                c.y = (p.y);
+            }, (p, c)=>{});*/
+        }
+        else{
+            this.component = aya.Component("circle", {x:(u + 200), y:v, r:w});
+            this.component.form.c_svg.setAttribute("stroke-width","5px");
+        }
+    }
     addEvent(event, callback){
         console.log("this.addEvent");
         console.log(this);
@@ -20,39 +41,45 @@ class bpmnEvent{
     }
 
     addChildren(){
-        var circle = aya.Image(215, 100, 20, 20, "./Images/circle.png");
-        var lozenge = aya.Image(135,100, 20, 20, "./Images/lozenge.png");
+        var circle = aya.Image(215, 100, 20, 20, "./Images/circle.png", "circle");
+        var lozenge = aya.Image(135,100, 20, 20, "./Images/lozenge.png", "lozenge");
+        var rectangle = aya.Image(140,100, 20, 20, "./Images/rectangle.png", "rectangle");
         
-        this.component.form.addChild(circle, (p, c)=>{
-            c.x = (p.x + this.component.form.r + 15);
-            c.y = (p.y - this.component.form.r);
-        }, (p, c)=>{}, false);
+        if (this.type == "start_event"){
+            this.component.form.addChild(lozenge, (p, c)=>{
+                c.x = (p.x + this.component.form.r + 10);
+                c.y = (p.y - this.component.form.r);
+            }, (p, c)=>{}, false);
 
-        this.component.form.addChild(lozenge, (p, c)=>{
-            c.x = (p.x + this.component.form.r + 40);
-            c.y = (p.y - this.component.form.r);
-        }, (p, c)=>{}, false);
-    }
-
-    showPanelTools(e){
-        console.log("this.showPanelTools");
-        console.log(this);
-        var id = e.srcElement.id;
-        var cp = aya.Register().find(id);
-        console.log(cp);
-        if (back_id == "") {
-            console.log("If");
-            cp.form.children.map(({child}) => {
-                child.draw();
-            });
-            back_id = id;
+            this.component.form.addChild(rectangle, (p, c)=>{
+                c.x = (p.x + this.component.form.r + 35);
+                c.y = (p.y - this.component.form.r);
+            }, (p, c)=>{}, false);
         }
-        else{
-            console.log("Else");
-            cp.form.children.map(({child}) => {
-                child.removeFromDOM();
-            });
-            back_id = "";
+        
+        else if (this.type == "intermediate_event"){
+            this.component.form.addChild(circle, (p, c)=>{
+                c.x = (p.x + this.component.form.r + 10);
+                c.y = (p.y - this.component.form.r);
+            }, (p, c)=>{}, false);
+
+            this.component.form.addChild(lozenge, (p, c)=>{
+                c.x = (p.x + this.component.form.r + 35);
+                c.y = (p.y - this.component.form.r);
+            }, (p, c)=>{}, false);
+
+            this.component.form.addChild(rectangle, (p, c)=>{
+                c.x = (p.x + this.component.form.r + 10);
+                c.y = (p.y - this.component.form.r + 25);
+            }, (p, c)=>{}, false);
         }
     }
+
+    /*addEventChild(event, callback){
+        this.component.form.children.map(({child})=>{
+            child.addEvent(event, callback);
+        });
+        this.events[event] = callback;
+        this.component.form.events[event] = callback;
+    }*/
 }

@@ -1,0 +1,60 @@
+.svg{
+    width: 100%;
+    height: auto;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.show{
+    visibility: visible;
+}
+
+.scroll {
+    cursor: all-scroll;
+}
+
+.point{
+    cursor: pointer;
+}
+
+.hidden_point{
+    visibility: hidden;
+}
+
+.show_point{
+    visibility: visible;
+}
+
+.defaut{
+    visibility: default;
+}
+
+.zoom {
+    cursor: zoom-in;
+}
+
+.move{
+    cursor: move;
+}
+
+.resize_right_top{
+    cursor: sw-resize;
+}
+
+.resize_right_bottom{
+    cursor: nw-resize;
+}
+
+.resize_left_top{
+    cursor: se-resize;
+}
+
+.resize_left_bottom{
+    cursor: ne-resize;
+}
+
+.drawing{
+    cursor: crosshair;
+}
