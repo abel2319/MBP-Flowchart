@@ -7,17 +7,34 @@ class Events{
                 var cp2 = aya.Register().find(e.srcElement.getAttribute("id"));
                 console.log(cp2);
                 if (e.srcElement.getAttribute("href") === "./Images/circle.png"){
-                    var next = new bpmnEvent("intermediate_event", Number(e.srcElement.getAttribute("x")) + 80, Number(e.srcElement.getAttribute("y")) + 65, 15);
-                    var x = Number(cp2.form.c_points[3].c_svg.getAttribute("cx"));
-                    var y = Number(cp2.form.c_points[3].c_svg.getAttribute("cy")); 
-                    var dx = Number(next.component.form.c_points[1].c_svg.getAttribute("cx")); 
-                    var dy = Number(next.component.form.c_points[1].c_svg.getAttribute("cy"));
+                    if (cp2.form.c_svg.getAttribute("class") == "0") {
+                        var next = new bpmnEvent("intermediate_event", Number(e.srcElement.getAttribute("x")) + 80, Number(e.srcElement.getAttribute("y")) + 65, 15);
+                        var x = Number(cp2.form.c_points[3].c_svg.getAttribute("cx"));
+                        var y = Number(cp2.form.c_points[3].c_svg.getAttribute("cy")); 
+                        var dx = Number(next.component.form.c_points[1].c_svg.getAttribute("cx")); 
+                        var dy = Number(next.component.form.c_points[1].c_svg.getAttribute("cy"));
+                        cp2.form.c_svg.setAttribute("class", "1");
+                    }
+                    else if (cp2.form.c_svg.getAttribute("class") == "1" && cp2.type != "circle") {
+                        var next = new bpmnEvent("intermediate_event", Number(e.srcElement.getAttribute("x")), Number(e.srcElement.getAttribute("y")) - 30, 15);
+                        var x = Number(cp2.form.c_points[2].c_svg.getAttribute("cx"));
+                        var y = Number(cp2.form.c_points[2].c_svg.getAttribute("cy")); 
+                        var dx = Number(next.component.form.c_points[0].c_svg.getAttribute("cx")); 
+                        var dy = Number(next.component.form.c_points[0].c_svg.getAttribute("cy"));
+                        cp2.form.c_svg.setAttribute("class", "2");
+                    }
+                    else if (cp2.form.c_svg.getAttribute("class") == "2" && cp2.type != "circle") {
+                        var next = new bpmnEvent("intermediate_event", Number(e.srcElement.getAttribute("x")), Number(e.srcElement.getAttribute("y")) - 30, 15);
+                        var x = Number(cp2.form.c_points[0].c_svg.getAttribute("cx"));
+                        var y = Number(cp2.form.c_points[0].c_svg.getAttribute("cy")); 
+                        var dx = Number(next.component.form.c_points[2].c_svg.getAttribute("cx")); 
+                        var dy = Number(next.component.form.c_points[2].c_svg.getAttribute("cy"));
+                        cp2.form.c_svg.setAttribute("class", "3");
+                    }
                     var line = aya.Line(x, y, dx, dy);
-                    //var line = aya.Line(cp2.form.uuid, cp2.form.svg, null, cp2.form.config, aya._uuid().generate(), x, y, dx, dy);
-                    //var line = aya.Line(200, 100, 500, 200);
-	                line.draw();
+                    line.draw();
                     var link = aya.Link(cp2.form.c_points[1], next.component.form.c_points[3], line);
-	                link.redraw();
+                    link.redraw();
                 }
                 else if (e.srcElement.getAttribute("href") === "./Images/rectangle.png"){
                     var cp = new Action();
@@ -55,10 +72,12 @@ class Events{
             mouseleavecb: (e) => {
                 var id = e.srcElement.id;
                 var cp = aya.Register().find(id);
-                cp.form.children.map(({child}) => {
-                    child.c_svg.setAttribute("class", "hidden");
-                    //child.removeFromDOM();
-                });
+                setTimeout(()=>{
+                    cp.form.children.map(({child}) => {
+                        child.c_svg.setAttribute("class", "hidden");
+                        //child.removeFromDOM();
+                    });
+                }, 5000);
             }
         }
     }

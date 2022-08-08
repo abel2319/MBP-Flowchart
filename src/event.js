@@ -7,6 +7,7 @@ class bpmnEvent{
         this.events = {};
 
         this.addComponent(x, y, r);
+        this.component.form.c_svg.setAttribute("class", "0");
         this.addChildren();
         this.addEvent("mouseover", Events.setup().mouseovercb);
         this.addEvent("mouseleave", Events.setup().mouseleavecb);
