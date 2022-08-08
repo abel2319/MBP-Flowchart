@@ -32,23 +32,33 @@ class Events{
                 var id = e.srcElement.id;
                 var cp = aya.Register().find(id);
                 console.log(cp);
-                if (back_id == "") {
-                    console.log("If");
-                    cp.form.children.map(({child}) => {
-                        child.draw();
-                        console.log(child);
-                        child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
-                        child.c_svg.setAttribute("id", cp.form.uuid);
-                    });
-                    back_id = id;
-                }
-                else{
-                    console.log("Else");
-                    cp.form.children.map(({child}) => {
-                        child.removeFromDOM();
-                    });
-                    back_id = "";
-                }     
+                cp.form.c_svg.style.cursor = "move";
+                //if (back_id == "") {
+                console.log("If");
+                cp.form.children.map(({child}) => {
+                    //child.draw();
+                    console.log(child);
+                    child.c_svg.setAttribute("class", "show");
+                    child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                    child.c_svg.setAttribute("id", cp.form.uuid);
+                });
+                //    back_id = id;
+                //}
+                // else{
+                //     console.log("Else");
+                //     cp.form.children.map(({child}) => {
+                //         child.removeFromDOM();
+                //     });
+                //     back_id = "";
+                // }     
+            },
+            mouseleavecb: (e) => {
+                var id = e.srcElement.id;
+                var cp = aya.Register().find(id);
+                cp.form.children.map(({child}) => {
+                    child.c_svg.setAttribute("class", "hidden");
+                    //child.removeFromDOM();
+                });
             }
         }
     }

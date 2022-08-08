@@ -9,6 +9,7 @@ class bpmnEvent{
         this.addComponent(x, y, r);
         this.addChildren();
         this.addEvent("mouseover", Events.setup().mouseovercb);
+        this.addEvent("mouseleave", Events.setup().mouseleavecb);
         aya.Register().add(this);
         console.log(this);
     }
@@ -49,30 +50,33 @@ class bpmnEvent{
             this.component.form.addChild(lozenge, (p, c)=>{
                 c.x = (p.x + this.component.form.r + 10);
                 c.y = (p.y - this.component.form.r);
-            }, (p, c)=>{}, false);
+            }, (p, c)=>{}, true);
 
             this.component.form.addChild(rectangle, (p, c)=>{
                 c.x = (p.x + this.component.form.r + 35);
                 c.y = (p.y - this.component.form.r);
-            }, (p, c)=>{}, false);
+            }, (p, c)=>{}, true);
         }
         
         else if (this.type == "intermediate_event"){
             this.component.form.addChild(circle, (p, c)=>{
                 c.x = (p.x + this.component.form.r + 10);
                 c.y = (p.y - this.component.form.r);
-            }, (p, c)=>{}, false);
+            }, (p, c)=>{}, true);
 
             this.component.form.addChild(lozenge, (p, c)=>{
                 c.x = (p.x + this.component.form.r + 35);
                 c.y = (p.y - this.component.form.r);
-            }, (p, c)=>{}, false);
+            }, (p, c)=>{}, true);
 
             this.component.form.addChild(rectangle, (p, c)=>{
                 c.x = (p.x + this.component.form.r + 10);
                 c.y = (p.y - this.component.form.r + 25);
-            }, (p, c)=>{}, false);
+            }, (p, c)=>{}, true);
         }
+        this.component.form.children.map(({child}) => {
+            child.c_svg.setAttribute("class", "hidden")
+        });
     }
 
     /*addEventChild(event, callback){

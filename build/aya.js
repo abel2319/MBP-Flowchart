@@ -1414,14 +1414,14 @@
 	        if(local_cp == undefined)
 	          return;
 	        if(local_cp.form.type == "line"){
-	          local_cp.form.c_svg.setAttribute("class", "move");
+	          //local_cp.form.c_svg.setAttribute("class", "move");/****** */
 	          local_cp.form.vertex.map((vt) =>{
 	            vt.c_svg.setAttribute("class", "default");
 	          });
 	        }
 	        else {
 	          if(local_cp.form != undefined){
-	            local_cp.form.c_svg.setAttribute("class", "move");
+	            //local_cp.form.c_svg.setAttribute("class", "move");/**** */
 	            local_cp.form.c_points.map( (point) => {
 	              point.c_svg.setAttribute("class", "show_point");
 	            });
@@ -4034,7 +4034,7 @@
 			return new Link(src_point, dest_point, line);
 		}
 		/************************************************************* */
-		
+
 	    Component(type, props){
 	        return new Component(type, props, this.svg, this.events, this.config);
 	    }

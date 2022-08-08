@@ -35,9 +35,9 @@
     cursor: zoom-in;
 }
 
-.move{
+/* .move{
     cursor: move;
-}
+} */
 
 .resize_right_top{
     cursor: sw-resize;
