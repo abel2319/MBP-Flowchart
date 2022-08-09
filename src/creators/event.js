@@ -2,23 +2,16 @@
 class bpmnEvent{
     constructor(type = "start_event", prosp={x:200, y:100, r:15}){
         this.type = type;
-        //this.uuid = aya._uuid().generate();
         this.component;
         this.events = {};
 
         this.addComponent(prosp.x, prosp.y, prosp.r);
-        //this.component.form.c_svg.setAttribute("class", "0");
         this.addChildren();
-        //this.addEvent("mouseover", Events.setup().mouseovercb);
-        //this.addEvent("mouseleave", Events.setup().mouseleavecb);
         this.component.form.c_svg.onmouseover = bpmnComponent.mouseovercb;
-        this.component.form.c_svg.addEventListener("mouseover", Events.setup().mouseovercb);
-        //aya.Register().add(this);
-        console.log(this);
+        this.component.form.c_svg.onmouseleave = bpmnComponent.mouseleavecb;
     }
 
     addComponent(u, v, w){
-        //var tmp = aya.Component("circle", {x:200, y:100, r:13});
         if (this.type == "start_event"){
             this.component = aya.Component("circle", {x:u, y:v, r:w});
             this.component.form.c_svg.setAttribute("stroke-width","2px");
@@ -101,7 +94,7 @@ class bpmnEvent{
         
         this.component.form.children.map(({child}) => {
             if (child.type != "text") {
-                child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                child.c_svg.onclick = bpmnComponent.mousedowncbChild;
                 child.c_svg.setAttribute("id", this.component.form.uuid);
             }
         });

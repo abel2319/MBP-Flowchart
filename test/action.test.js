@@ -15,26 +15,13 @@ QUnit.test("default action", (assert) => {
 
 });
 
-QUnit.test("add an event onClick on a bpmn component", (assert) => {
-    var ac = new Task();
-
-    function mousedowncb(e){
-        console.log(e);
-    }
-    ac.addEvent("mousedown", mousedowncb);
-    assert.equal(Object.keys(ac.events).length, 4, "utilisator must have four event"); 
-    assert.ok(ac.events["mousedown"], "utilisator event must be mousedown");
-});
 
 QUnit.test("create panel of tools when mousedown event is applied", (assert) => {
     var ac = new Task();
     var center_x = ac.component.form.x;
     var center_y = ac.component.form.y;
     var ac_width = ac.component.form.width;
-
-    ac.addEvent("mouseover", Events.setup().mouseovercb);
-    assert.equal(Object.keys(ac.events).length, 3, "utilisator must have three event"); 
-    assert.ok(ac.events["mouseover"], "utilisator event must be mouseover");
+ 
     assert.equal(ac.component.form.children.length, 6, "ac must have 2 children");
 
     ac.component.form.children.map(({child}, index)=>{

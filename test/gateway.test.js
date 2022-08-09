@@ -11,26 +11,12 @@ QUnit.test("default gateway", (assert) => {
 
 });
 
-QUnit.test("add an event mousedown on a bpmn component", (assert) => {
-    var gw = new bpmnComponent("gateway_exclusive");
-
-    function mousedowncb(e){
-        console.log(e);
-    }
-    gw.comp.addEvent("mousedown", mousedowncb);
-    assert.equal(Object.keys(gw.comp.events).length, 3, "utilisator must have one event"); 
-    assert.ok(gw.comp.events["mousedown"], "utilisator event must be mousedown");
-});
-
 QUnit.test("create panel of tools when mousedown event is applied", (assert) => {
     var gw = new bpmnComponent("gateway_exclusive");
     var center_x = gw.comp.component.form.x;
     var center_y = gw.comp.component.form.y;
     var gw_width = gw.comp.component.form.width;
 
-    gw.comp.addEvent("mouseover", Events.setup().mouseovercb);
-    assert.equal(Object.keys(gw.comp.events).length, 2, "utilisator must have three event"); 
-    assert.ok(gw.comp.events["mouseover"], "utilisator event must be mouseover");
     assert.equal(gw.comp.component.form.children.length, 6, "gw.comp must have 2 children");
 
     gw.comp.component.form.children.map(({child}, index)=>{

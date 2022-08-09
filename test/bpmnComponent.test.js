@@ -42,3 +42,15 @@ QUnit.test("Events on bpmn components", (assert) => {
 
 });
 
+QUnit.test("Events on children", (assert) => {
+   var se = new bpmnComponent("task");
+
+   se.comp.component.form.children.map(({child}) => {
+      if (child.type != "text"){
+         assert.equal(child.c_svg.getAttribute("class"), "hidden", "each child must have event mousedown");
+         assert.equal(child.c_svg.getAttribute("id"), se.id, "each child must have the same id as its parent");
+         assert.equal(child.c_svg.onclick.name, "mousedowncbChild", "each child of a bpmn component must have event onmousedown equal to mouseovercb");
+      }
+   });
+});
+

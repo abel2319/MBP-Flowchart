@@ -8,11 +8,8 @@ class Task{
         this.addComponent(200, 100, 50, 50);
         //this.component.form.c_svg.setAttribute("class", "0");
         this.addChildren();
-        this.component.form.c_svg.onmouseover = Events.setup().mouseovercb;
-        this.component.form.c_svg.onmouseover = Events.setup().mouseovercb;
-        //this.addEvent("mouseleave", Events.setup().mouseleavecb);
-        //this.addEvent("ondblclick", Events.setup().doubleclickcb);
-        //aya.Register().add(this);
+        this.component.form.c_svg.onmouseover = bpmnComponent.mouseovercb;
+        this.component.form.c_svg.onmouseleave = bpmnComponent.mouseleavecb;
     }
 
     addComponent(u, v, h, w){
@@ -20,13 +17,6 @@ class Task{
         this.component.form.c_svg.setAttribute("rx", "10px");
         this.component.form.c_svg.setAttribute("ry", "10px");
     }
-
-    // addEvent(event, callback){
-    //     console.log("this.addEvent");
-    //     this.component.form.c_svg.addEventListener(event, callback);
-    //     this.events[event] = callback;
-    //     this.component.form.events[event] = callback;
-    // }
 
     addChildren(){
         var circle = aya.Image(215, 100, 20, 20, "./Images/circle.png");
@@ -68,7 +58,7 @@ class Task{
 
         this.component.form.children.map(({child}) => {
             if (child.type != "text") {
-                child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                child.c_svg.onclick = bpmnComponent.mousedowncbChild;
                 child.c_svg.setAttribute("id", this.component.form.uuid);
             }
         });

@@ -6,19 +6,12 @@ class Gateway{
 
         this.addComponent(200, 100, 40, 40);
         this.addChildren();
-        this.addEvent("mouseover", Events.setup().mouseovercb);
-        this.addEvent("mouseleave", Events.setup().mouseleavecb);
-        //aya.Register().add(this);
+        this.component.form.c_svg.onmouseover = bpmnComponent.mouseovercb;
+        this.component.form.c_svg.onmouseleave = bpmnComponent.mouseleavecb;
     }
 
     addComponent(u, v, h, w){
         this.component = aya.Component("lozenge", {x:u, y:v, height:h, width:w});
-    }
-
-    addEvent(event, callback){
-        this.component.form.c_svg.addEventListener(event, callback);
-        this.events[event] = callback;
-        this.component.form.events[event] = callback;
     }
 
     addChildren(){
@@ -61,7 +54,7 @@ class Gateway{
         
         this.component.form.children.map(({child}) => {
             if (child.type != "text") {
-                child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                child.c_svg.onclick = bpmnComponent.mousedowncbChild;
                 child.c_svg.setAttribute("id", this.component.form.uuid);
             }
         });

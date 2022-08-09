@@ -15,16 +15,6 @@ QUnit.test("default event created", (assert)=>{
     assert.equal(cp.component.form.children.length, 3, "start event must have two children");
 });
 
-QUnit.test("add an event mousedown on a bpmn component", (assert) => {
-    var cp = new bpmnEvent();
-
-    function mousedowncb(e){
-        console.log(e);
-    }
-    cp.addEvent("mousedown", mousedowncb);
-    assert.equal(Object.keys(cp.events).length, 3, "utilisator must have three event"); 
-    assert.ok(cp.events["mousedown"], "utilisator event must be mousedown");
-});
 
 QUnit.test("create panel of tools when mouseover event is applied on start event", (assert) => {
     var cp = new bpmnEvent();
@@ -32,10 +22,6 @@ QUnit.test("create panel of tools when mouseover event is applied on start event
     var center_y = cp.component.form.y;
     var circle_r = cp.component.form.r;
 
-    cp.addEvent("mouseover", Events.setup().mouseovercb);
-    
-    assert.equal(Object.keys(cp.events).length, 2, "utilisator must have three events"); 
-    assert.ok(cp.events["mouseover"], "utilisator event must be mouseover");
     assert.equal(cp.component.form.children.length, 3, "cp must have 2 children");
 
     cp.component.form.children.map(({child}, index)=>{
@@ -78,10 +64,6 @@ QUnit.test("create panel of tools when mouseover event is applied on intermediat
     var center_y = cp.component.form.y;
     var circle_r = cp.component.form.r;
 
-    cp.addEvent("mousedown", Events.setup().mouseovercb);
-    
-    assert.equal(Object.keys(cp.events).length, 2, "utilisator must have three events"); 
-    assert.ok(cp.events["mouseover"], "utilisator event must be mousedown");
     assert.equal(cp.component.form.children.length, 6, "cp must have 2 children");
 
     cp.component.form.children.map(({child}, index)=>{
@@ -105,19 +87,4 @@ QUnit.test("Create an end event", (assert) => {
     assert.equal(stroke_width, "5px", "component's stroke width must be 5");
     assert.equal(stroke_color, "black", "component's stroke color must be black");
     assert.equal(cp.component.form.children.length, 2, "end event don't have children");
-});
-
-QUnit.test("Events on children", (assert) => {
-    var se = new bpmnEvent("start_event");
-    var ie = new bpmnEvent("intermediate_event");
-    var ee = new bpmnEvent("end_event");
-
-    se.component.form.children.map(({child}) => {
-        console.log("abel");
-        console.log(child.c_svg);
-        if (child.type != "text"){
-            assert.equal(child.c_svg.getAttribute("class"), "hidden", "each child must have event mousedown");
-            assert.equal(child.c_svg.getAttribute("id"), se.component.form.uuid, "each child must have the same id as its parent");
-        }
-    });
 });

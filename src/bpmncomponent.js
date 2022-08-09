@@ -21,4 +21,37 @@ class bpmnComponent{
             }
         });
     }
+    static mouseleavecb(e){
+        var id = e.srcElement.id;
+        var cp = Register.findComponent(id);
+        setTimeout(()=>{
+            cp.comp.component.form.children.map(({child}) => {
+                if (child.type != "text")
+                    child.c_svg.setAttribute("class", "hidden");
+                //child.removeFromDOM();
+            });
+        }, 5000);
+    }
+    static mousedowncbChild(e){
+        console.log(e.srcElement);
+        var cp2 = Register.findComponent(e.srcElement.getAttribute("id"));
+        console.log("abel-----------------------------------");
+        console.log(cp2);
+        if (e.srcElement.getAttribute("href") === "./Images/circle.png"){
+            var next = new bpmnComponent();
+        }
+        else if (e.srcElement.getAttribute("href") === "./Images/rectangle.png"){
+
+        }
+        else if (e.srcElement.getAttribute("href") === "./Images/lozenge.png"){
+            
+        }
+    }
+    static doubleclickcb(e){
+        var id = e.srcElement.id;
+        var cp = aya.Register().find(id);
+        console.log("doubleclickcb");
+        console.log(cp.form.children);
+        //var inp = document.createElement("input");
+    }
 }
