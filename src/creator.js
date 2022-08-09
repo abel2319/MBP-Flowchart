@@ -1,13 +1,11 @@
 class Creator{
-    static createForm(type, props){
-       if (type == "rectangle")
-          return RectangleCreator.createForm(props);
-       else if (type == "circle")
-          return CircleCreator.createForm(props);
-       else if (type == "lozenge")
-          return LozengeCreator.createForm(props);
-       if (type == "line")
-          return LineCreator.createForm(props);
+    static createForm(type){
+       if ( (type == "start_event") || (type == "intermediate_event") || (type == "end_event"))
+          return new bpmnEvent(type);
+       else if (type == "task")
+          return new Task(type);
+       else if (type == "gateway_exclusive")
+          return new Gateway(type);
     }
 }
  

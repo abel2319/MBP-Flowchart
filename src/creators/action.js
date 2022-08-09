@@ -1,17 +1,18 @@
-class Action{
-    constructor(type = "action", x = 200, y = 100, height = 50, width = 50){
+class Task{
+    constructor(type = "task", prosp={x:200, y:100, height:50, width:50}){
         this.type = type;
-        this.uuid = aya._uuid().generate();
+        //this.uuid = aya._uuid().generate();
         this.component;
         this.events = {};
 
-        this.addComponent(x, y, height, width);
-        this.component.form.c_svg.setAttribute("class", "0");
+        this.addComponent(200, 100, 50, 50);
+        //this.component.form.c_svg.setAttribute("class", "0");
         this.addChildren();
-        this.addEvent("mouseover", Events.setup().mouseovercb);
-        this.addEvent("mouseleave", Events.setup().mouseleavecb);
-        this.addEvent("ondblclick", Events.setup().doubleclickcb);
-        aya.Register().add(this);
+        this.component.form.c_svg.onmouseover = Events.setup().mouseovercb;
+        this.component.form.c_svg.onmouseover = Events.setup().mouseovercb;
+        //this.addEvent("mouseleave", Events.setup().mouseleavecb);
+        //this.addEvent("ondblclick", Events.setup().doubleclickcb);
+        //aya.Register().add(this);
     }
 
     addComponent(u, v, h, w){
@@ -20,13 +21,12 @@ class Action{
         this.component.form.c_svg.setAttribute("ry", "10px");
     }
 
-    addEvent(event, callback){
-        console.log("this.addEvent");
-        console.log(this);
-        this.component.form.c_svg.addEventListener(event, callback);
-        this.events[event] = callback;
-        this.component.form.events[event] = callback;
-    }
+    // addEvent(event, callback){
+    //     console.log("this.addEvent");
+    //     this.component.form.c_svg.addEventListener(event, callback);
+    //     this.events[event] = callback;
+    //     this.component.form.events[event] = callback;
+    // }
 
     addChildren(){
         var circle = aya.Image(215, 100, 20, 20, "./Images/circle.png");
@@ -34,8 +34,8 @@ class Action{
         var rectangle = aya.Image(140,100, 20, 20, "./Images/rectangle.png", "rectangle");
         var trash = aya.Image(140,100, 20, 20, "./Images/trash.png", "trash");
         var endEvent = aya.Image(140,100, 20, 20, "./Images/endEvent.png", "endEvent");
-        var text = aya.Text(0,0,"");
-        
+        var text = aya.Text(0,0,"abel");
+
         this.component.form.addChild(circle, (p, c)=>{
             c.x = (p.x + this.component.form.width / 2 + 30);
             c.y = (p.y);
@@ -62,10 +62,17 @@ class Action{
         }, (p, c)=>{}, true);
 
         this.component.form.addChild(text, (p,c)=>{
-            c.setOffsetX(p.x - p.width/4);
+            c.setOffsetX(p.x + 5);
             c.setOffsetY(p.y + p.height/2);
         }, (p,c)=>{}, true);
 
+        this.component.form.children.map(({child}) => {
+            if (child.type != "text") {
+                child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                child.c_svg.setAttribute("id", this.component.form.uuid);
+            }
+        });
+        
         this.component.form.children.map(({child}) => {
             if (child.type !== 'text')
                 child.c_svg.setAttribute("class", "hidden")

@@ -1,14 +1,14 @@
 class Gateway{
-    constructor(type = "exclusive", x = 200, y = 100, height = 40, width = 40){
+    constructor(type = "gateway_exclusive", prosp={x:200, y:100, height:40, width:40}){
         this.type = type;
         this.component;
         this.events = {};
 
-        this.addComponent(x, y, height, width);
+        this.addComponent(200, 100, 40, 40);
         this.addChildren();
         this.addEvent("mouseover", Events.setup().mouseovercb);
         this.addEvent("mouseleave", Events.setup().mouseleavecb);
-        aya.Register().add(this);
+        //aya.Register().add(this);
     }
 
     addComponent(u, v, h, w){
@@ -58,6 +58,13 @@ class Gateway{
             c.setOffsetX(p.x - p.width/4);
             c.setOffsetY(p.y + p.height + 5);
         }, (p,c)=>{}, true);
+        
+        this.component.form.children.map(({child}) => {
+            if (child.type != "text") {
+                child.c_svg.addEventListener("click", Events.setup().mousedowncbChild);
+                child.c_svg.setAttribute("id", this.component.form.uuid);
+            }
+        });
         
         this.component.form.children.map(({child}) => {
             child.c_svg.setAttribute("class", "hidden")

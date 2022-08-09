@@ -57,7 +57,9 @@
 	        strokeOpacity : 100,
 	        strokeDasharray : 10.5,
 	        strokeDashoffset : 10.5,
-	    }
+	    },
+
+	    linkcb: null
 	};
 
 	var store = {};
@@ -499,6 +501,13 @@
 	        this.children.map(({child}) => {
 	            child.removeFromDOM();
 	        });
+	        this.c_points.map((pt)=>{
+	            pt.removeFromDOM();
+	        });
+	      
+	        this.vertex.map((vt)=>{
+	        vt.removeFromDOM();
+	        });
 	    }
 	    
 	    shift(dx, dy){
@@ -877,6 +886,13 @@
 	    this.children.map(({child}) =>{
 	      child.removeFromDOM();
 	    });
+	    this.c_points.map((pt)=>{
+	      pt.removeFromDOM();
+	    });
+
+	    this.vertex.map((vt)=>{
+	      vt.removeFromDOM();
+	    });
 	  }
 
 	  setRotateCenter(centerX, centerY){
@@ -1146,6 +1162,8 @@
 	       this.line = line;
 	       this.type = "link";
 	       _Register.add(this);
+	       if(config.linkcb)
+	        config.linkcb(this);
 	    }
 
 	    redraw(){
@@ -1414,14 +1432,14 @@
 	        if(local_cp == undefined)
 	          return;
 	        if(local_cp.form.type == "line"){
-	          //local_cp.form.c_svg.setAttribute("class", "move");/****** */
+	          local_cp.form.c_svg.setAttribute("class", "move");
 	          local_cp.form.vertex.map((vt) =>{
 	            vt.c_svg.setAttribute("class", "default");
 	          });
 	        }
 	        else {
 	          if(local_cp.form != undefined){
-	            //local_cp.form.c_svg.setAttribute("class", "move");/**** */
+	            local_cp.form.c_svg.setAttribute("class", "move");
 	            local_cp.form.c_points.map( (point) => {
 	              point.c_svg.setAttribute("class", "show_point");
 	            });
@@ -1680,6 +1698,13 @@
 
 	    removeFromDOM(){
 	        this.svg.removeChild(this.c_svg);
+	        this.c_points.map((pt)=>{
+	            pt.removeFromDOM();
+	        });
+	    
+	        this.vertex.map((vt)=>{
+	        vt.removeFromDOM();
+	        });
 	    }
 
 
@@ -1979,6 +2004,18 @@
 
 	  removeFromDOM(){
 	    this.svg.removeChild(this.c_svg);
+
+	    this.children.map(({child})=>{
+	      child.removeFromDOM();
+	    });
+	    
+	    this.c_points.map((pt)=>{
+	      pt.removeFromDOM();
+	    });
+
+	    this.vertex.map((vt)=>{
+	      vt.removeFromDOM();
+	    });
 	  }
 
 	  shift(dx, dy) {
@@ -2279,6 +2316,14 @@
 	    this.children.map(({child})=>{
 	      child.removeFromDOM();
 	    });
+
+	    this.c_points.map((pt)=>{
+	      pt.removeFromDOM();
+	    });
+
+	    this.vertex.map((vt)=>{
+	      vt.removeFromDOM();
+	    });
 	  }
 
 	  redraw() {
@@ -2567,9 +2612,9 @@
 	        var path = "";
 	        for(var i = 0; i < this.points.length; i++){
 	            if(i % 2 == 0)
-	                path += this.points[i] + ",";
+	                path += this.points[i] + this.offsetX + ",";
 	            else
-	                path += this.points[i] + " ";
+	                path += this.points[i] + this.offsetY + " ";
 	        }
 	        this.c_svg.setAttribute("id", this.uuid);
 	        this.c_svg.setAttribute("fill", this.config.form.fill);
@@ -2596,6 +2641,14 @@
 	        this.svg.removeChild(this.c_svg);
 	        this.children.map(({child}) =>{
 	            child.removeFromDOM();
+	        });
+
+	        this.c_points.map((pt)=>{
+	            pt.removeFromDOM();
+	        });
+	      
+	        this.vertex.map((vt)=>{
+	        vt.removeFromDOM();
 	        });
 	    }
 
@@ -4021,19 +4074,13 @@
 	        this.svg.addEventListener("mouseup", this.events.mouseUpCb);
 	    }
 
-	    Register(){
-	        return _Register;
+	    setlinkcb(cb){
+	        this.config.linkcb = cb;
 	    }
 
 	    _uuid(){
-	        return _uuid; 
+	        return _uuid;
 	    }
-
-		/****************let Link be reachable************************* */
-		Link(src_point, dest_point, line ){
-			return new Link(src_point, dest_point, line);
-		}
-		/************************************************************* */
 
 	    Component(type, props){
 	        return new Component(type, props, this.svg, this.events, this.config);
@@ -4061,6 +4108,10 @@
 
 	    Line(x=0, y=0, dest_x = x, dest_y = y){
 	        return new Line(this.uuid, this.svg, this.events, this.config, _uuid.generate(), x, y, dest_x, dest_y);
+	    }
+
+	    Link(src_point, dest_point, line = undefined){
+	        return new Link(src_point, dest_point, line);
 	    }
 
 	    Polyline( points = []){

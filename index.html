@@ -8,16 +8,13 @@
     <link rel="stylesheet" href="Style/style.css">
     <link rel="stylesheet" href="style.css">
     <script src="build/aya.js"></script>
-    <script src="src/creator.js"></script>
-    <script src="src/component.js"></script>
-    <script src="src/creators/rectangle.js"></script>
-    <script src="src/creators/lozenge.js"></script>
-    <script src="src/creators/line.js"></script>
-    <script src="src/creators/circle.js"></script>
-    <script src="src/callback.js"></script>
-    <script src="src/event.js"></script>
-    <script src="src/gateway.js"></script>
-    <script src="src/action.js"></script>
+    <script src="./src/creators/event.js"></script>
+    <script src="./src/creators/gateway.js"></script>
+    <script src="./src/creators/action.js"></script>
+    <script src="./src/register.js"></script>
+    <script src="./src/creator.js"></script>
+    <script src="./src/bpmncomponent.js"></script>
+    <script src="./src/callback.js"></script>
 
     <title>MBP-Flowchat</title>
 </head>
@@ -27,12 +24,14 @@
         <script>
             var aya = new aya.Init();
             console.log(aya);
+            aya.config.line.ends.start = {};
+            var store = {};
             var back_id = "";
             //var se = new bpmnEvent();
-            var ie = new bpmnEvent("intermediate_event");
+            var ie = new bpmnComponent("intermediate_event");
             //var ee = new bpmnEvent("end_event");
             //var gw = new Gateway();
-            var ac = new Action();
+            var ac = new bpmnComponent("task");
             //var img = aya.Image(200, 150, 20, 20, "Images/circle.png");
             //img.draw();
             aya.svg.setAttribute("class", "aya");
@@ -40,11 +39,11 @@
             document.getElementById("container_home").appendChild(aya.svg);
             function name(comp) {
                 if (comp == "loz")
-                    var loz = new Gateway();
+                    var loz = new bpmnComponent("gateway_exclusive");
                 if (comp == "rect")
-                    var rect = new Action();
+                    var rect = new bpmnComponent("task");
                 if (comp == "circ")
-                    var circ = new bpmnEvent();
+                    var circ = new bpmnComponent("intermediate_event");
                 //var img = aya.Image(400, 150, 20, 20, "Images/circle.png");
             }
         </script>
