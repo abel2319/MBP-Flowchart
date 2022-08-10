@@ -1,20 +1,5 @@
 QUnit.module('task');
 
-QUnit.test("default action", (assert) => {
-    var ac = new Task();
-    var ac_rx = ac.component.form.c_svg.getAttribute("rx");
-    var ac_ry = ac.component.form.c_svg.getAttribute("ry");
-
-    assert.equal(ac.type, "task", "exclusive gateway must be the defualt gateway type");
-    assert.ok(ac.component, "component must existed");
-    assert.equal(ac.component.type, "rectangle", "rectangle must be the default type in the component");
-    assert.equal(ac.component.form.width, 50, "component must have a width equals to 18px");
-    assert.equal(ac.component.form.height, 50, "component must have a height equals to 18px");
-    assert.equal(ac_rx, "10px", "border raduis of the component must equals to 10px");
-    assert.equal(ac_ry, "10px", "border raduis of the component must equals to 10px");
-
-});
-
 
 QUnit.test("create panel of tools when mousedown event is applied", (assert) => {
     var ac = new Task();

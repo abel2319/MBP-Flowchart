@@ -7,8 +7,8 @@ class bpmnEvent{
 
         this.addComponent(prosp.x, prosp.y, prosp.r);
         this.addChildren();
-        this.component.form.c_svg.onmouseover = bpmnComponent.mouseovercb;
-        this.component.form.c_svg.onmouseleave = bpmnComponent.mouseleavecb;
+        this.component.form.c_svg.onmouseover = Events.mouseovercb;
+        this.component.form.c_svg.onmouseleave = Events.mouseleavecb;
     }
 
     addComponent(u, v, w){
@@ -94,7 +94,7 @@ class bpmnEvent{
         
         this.component.form.children.map(({child}) => {
             if (child.type != "text") {
-                child.c_svg.onclick = bpmnComponent.mousedowncbChild;
+                child.c_svg.onclick = Events.mousedowncbChild;
                 child.c_svg.setAttribute("id", this.component.form.uuid);
             }
         });

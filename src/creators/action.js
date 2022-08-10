@@ -8,8 +8,8 @@ class Task{
         this.addComponent(200, 100, 50, 50);
         //this.component.form.c_svg.setAttribute("class", "0");
         this.addChildren();
-        this.component.form.c_svg.onmouseover = bpmnComponent.mouseovercb;
-        this.component.form.c_svg.onmouseleave = bpmnComponent.mouseleavecb;
+        this.component.form.c_svg.onmouseover = Events.mouseovercb;
+        this.component.form.c_svg.onmouseleave = Events.mouseleavecb;
     }
 
     addComponent(u, v, h, w){
@@ -58,7 +58,7 @@ class Task{
 
         this.component.form.children.map(({child}) => {
             if (child.type != "text") {
-                child.c_svg.onclick = bpmnComponent.mousedowncbChild;
+                child.c_svg.onclick = Events.mousedowncbChild;
                 child.c_svg.setAttribute("id", this.component.form.uuid);
             }
         });
