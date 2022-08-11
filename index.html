@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="build/aya.js"></script>
     <script src="./src/creators/event.js"></script>
+    <script src="./src/creators/link.js"></script>
     <script src="./src/creators/gateway.js"></script>
     <script src="./src/creators/action.js"></script>
     <script src="./src/register.js"></script>
@@ -28,16 +29,21 @@
             var store = {};
             var nbr_elt = 0;
             var id_test = "";
-            //var se = new bpmnEvent();
+
             var ie = new bpmnComponent("intermediate_event");
-            //var ee = new bpmnEvent("end_event");
-            //var gw = new Gateway();
             var ac = new bpmnComponent("task");
-            //var img = aya.Image(200, 150, 20, 20, "Images/circle.png");
-            //img.draw();
+            
+            // var text = document.createElement("div");
+            // var text_input = document.createElement("input");
+            // text.setAttribute("id", "field_text");
+            // text.appendChild(text_input);
+            // document.body.appendChild(text);
+
             aya.svg.setAttribute("class", "aya");
             console.log(aya.svg.getAttribute("class"));
             document.getElementById("container_home").appendChild(aya.svg);
+
+
             function name(comp) {
                 if (comp == "loz")
                     var loz = new bpmnComponent("gateway_exclusive");
@@ -54,7 +60,14 @@
             <div class="circ" onclick="name('circ')"></div>
             <div class="loz" onclick="name('loz')"></div>
         </div>
+        <div id="field-text">
+            <input type="text" id="text_input">
+        </div>
         <div id="component" class=""></div>
-    </div>  
+    </div> 
+    <script>
+        var text = document.getElementById("field-text");
+        var text_input = document.getElementById("text_input");
+    </script> 
 </body>
 </html>

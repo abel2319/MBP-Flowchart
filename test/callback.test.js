@@ -17,7 +17,19 @@ QUnit.test("mouseovercb", (assert)=>{
     });
 });
 
-QUnit.test("mousedown", (assert) => {
+QUnit.test("mouseleavecb", (assert)=>{
+    var ie = new bpmnComponent("intermediate_event")
+    var e1 = new _e(ie.comp.component.form.c_svg);
+
+    Events.mouseleavecb(e1);
+    ie.comp.component.form.children.map(({child}) => {
+        if (child.type != "text")
+            assert.equal(child.c_svg.getAttribute("class"), "hidden", "each child must have its attribute class set to hidden after a mouseleave");
+    });
+});
+
+
+QUnit.test("mousedowncbChild", (assert) => {
     var ie = new bpmnComponent("intermediate_event")
     var e1;
     var cp;
@@ -56,14 +68,15 @@ QUnit.test("mousedown", (assert) => {
                 }
                 else{
                     assert.equal(Number(cp1.comp.component.form.x), Number(cp.comp.component.form.x) + 200, "the new elt must be at least 100px in absciss from precedent elt");
-                    assert.equal(Number(cp1.comp.component.form.y), Number(cp.comp.component.form.y), "the new and precedent elt must have the same ordinate");
+                    assert.equal(Number(cp1.comp.component.form.y), Number(cp.comp.component.form.y) - cp1.comp.component.form.width / 2, "the new and precedent elt must have the same ordinate");
                 }
             }
-            else if (e1.srcElement.getAttribute("href") === "./Images/trash.png"){
-                nbr_elt--;
-                cp.comp.component.form.removeFromDOM();
-            }
-            //assert.equal(child.svg.lastChild.tagName, "circle", "the last child of aya svg must be a circle after the mousedown");
+            /********A revoir*************/
+            // else if (e1.srcElement.getAttribute("href") === "./Images/trash.png"){
+            //     nbr_elt--;
+            //     cp.comp.component.form.removeFromDOM();
+            // }
+            /*****************************/
         }
     });
 });

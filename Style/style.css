@@ -2,11 +2,11 @@ html, body{
     margin: auto;
 }
 
-.container_home{
+/* .container_home{
     position: absolute;
     z-index: -1;
     overflow: scroll;
-}
+} */
 .aya{
     position: absolute;
     
@@ -73,7 +73,7 @@ html, body{
     transform: rotate(45deg);
 }
 
-.tool_panel{
+/* .tool_panel{
     visibility: hidden;
 }
 .component_panel{
@@ -82,4 +82,22 @@ html, body{
 
 .tool_panel{
     display: inline-block;
+} */
+
+#field-text{
+    visibility: hidden;
+    position : absolute;
+    width : 50px;
+    height : 10px;
+    overflow : visible;
+    border : 1px solid rgb(204, 204, 204);
+    background-color : rgba(255, 255, 255);
+    box-sizing : border-box;
+    overflow-wrap : normal;
+    text-align : center;
+    outline : currentcolor none medium;
+}
+
+#field-text input{
+    width: 100%;
 }

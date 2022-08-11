@@ -8,6 +8,7 @@ class Gateway{
         this.addChildren();
         this.component.form.c_svg.onmouseover = Events.mouseovercb;
         this.component.form.c_svg.onmouseleave = Events.mouseleavecb;
+        this.component.form.c_svg.ondblclick = Events.doubleclickcb;
     }
 
     addComponent(u, v, h, w){
