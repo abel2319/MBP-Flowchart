@@ -44,7 +44,7 @@
 	    line : {
 	        fill : "black",
 	        ends : {
-	            start : { type : "circle"},
+	            start : { type : "triangle"},
 	            dest : { type : "triangle"}
 	        }
 	    },
@@ -4017,10 +4017,10 @@
 	        Object.keys(this.box.form.events).map((ev) => {
 	            this.box.form.deleteEvent(ev);
 	        });
-			console.log(this.width);
+
 	        for(var j = 1; j <= this.nl - 1; j++){
-	            var line = this.Line(0, j * this.tail_px, this.svg_width, j * this.tail_px);
-				
+	            var line = this.Line(0, j * this.tail_px, this.nl * this.tail_px, j * this.tail_px);
+
 	            this.box.form.addChild(line, (p, c)=> {}, (p,c)=>{});
 
 	            line.c_svg.setAttribute("fill", "#B266FF");
@@ -4045,7 +4045,7 @@
 	        }
 
 	        for(var j = 1; j <= this.nc - 1; j++){
-	            var line = this.Line(j * this.tail_px, 0, this.tail_px * j, this.svg_height);
+	            var line = this.Line(j * this.tail_px, 0, this.tail_px * j, this.nc * this.tail_px);
 
 	            this.box.form.addChild(line, (p, c)=> {},  (p,c)=>{});
 

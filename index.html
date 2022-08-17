@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qunit@latest/qunit/qunit.css">
     <link rel="stylesheet" href="Style/style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style/style1.css">
     <script src="build/aya.js"></script>
     <script src="./src/creators/event.js"></script>
     <script src="./src/creators/link.js"></script>
@@ -30,8 +30,10 @@
             var nbr_elt = 0;
             var id_test = "";
 
-            var ie = new bpmnComponent("intermediate_event");
-            var ac = new bpmnComponent("task");
+            var se = new bpmnComponent();
+            //var se = new bpmnComponent("end_event");
+            //var ie = new bpmnComponent("intermediate_event");
+            //var ac = new bpmnComponent("task");
             
             // var text = document.createElement("div");
             // var text_input = document.createElement("input");
@@ -60,6 +62,10 @@
             <div class="circ" onclick="name('circ')"></div>
             <div class="loz" onclick="name('loz')"></div>
         </div>
+        <div class="file">
+            <button id="downloadPNG">Download .png</button>
+            <button id="downloadSVG">Download .svg</button>
+        </div>
         <div id="field-text">
             <input type="text" id="text_input">
         </div>
@@ -69,5 +75,6 @@
         var text = document.getElementById("field-text");
         var text_input = document.getElementById("text_input");
     </script> 
+    <script src="./src/file.js"></script>
 </body>
 </html>

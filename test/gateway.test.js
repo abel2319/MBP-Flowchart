@@ -1,16 +1,5 @@
 QUnit.module('gateway');
 
-// QUnit.test("default gateway", (assert) => {
-//     var gw = new bpmnComponent("gateway_exclusive");
-
-//     assert.equal(gw.type, "gateway_exclusive", "exclusive gateway must be the defualt gateway type");
-//     assert.ok(gw.comp, "component must existed");
-//     assert.equal(gw.comp.component.type, "lozenge", "lozenge must be the default type in the component");
-//     assert.equal(gw.comp.component.form.width, 40, "component must have a width equals to 18px");
-//     assert.equal(gw.comp.component.form.height, 40, "component must have a height equals to 18px");
-
-// });
-
 QUnit.test("create panel of tools when mousedown event is applied", (assert) => {
     var gw = new bpmnComponent("gateway_exclusive");
     var center_x = gw.comp.component.form.x;

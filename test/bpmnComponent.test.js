@@ -23,7 +23,6 @@ QUnit.test('create a task', (assert) =>{
    assert.equal(ac_ry, "10px", "border raduis of the component must equals to 10px");
 });
 
-
 QUnit.test('create a gateway component', (assert) =>{
    var cp = new bpmnComponent("gateway_exclusive");
    assert.ok(cp.id,"id must be defined as string by ayajs");

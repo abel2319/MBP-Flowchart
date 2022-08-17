@@ -1,6 +1,5 @@
 QUnit.module('events');
 
-
 QUnit.test("default event created", (assert)=>{
     var cp = new bpmnEvent();
     var stroke_width = cp.component.form.c_svg.getAttribute("stroke-width");
@@ -30,7 +29,6 @@ QUnit.test("Position of the panel of tools when mouseover event is applied on st
     }); 
 });
 
-
 QUnit.test("Create an intermediate event", (assert) => {
     var cp = new bpmnEvent("intermediate_event");
     var stroke_width = cp.component.form.c_svg.getAttribute("stroke-width");
@@ -38,7 +36,7 @@ QUnit.test("Create an intermediate event", (assert) => {
 
     assert.equal(stroke_width, "2px", "component's stroke width must be 2");
     assert.equal(stroke_color, "black", "component's stroke color must be black");
-    assert.equal(cp.component.form.children.length, 6, "intermediate event must have three children");
+    assert.equal(cp.component.form.children.length, 7, "intermediate event must have seven children");
 });
 
 QUnit.test("Position of the panel of tools when mouseover event is applied on intermediate event", (assert) => {
@@ -47,19 +45,17 @@ QUnit.test("Position of the panel of tools when mouseover event is applied on in
     var center_y = cp.component.form.y;
     var circle_r = cp.component.form.r;
 
-    assert.equal(cp.component.form.children.length, 6, "cp must have 2 children");
+    assert.equal(cp.component.form.children.length, 7, "cp must have 7 children");
 
     cp.component.form.children.map(({child}, index)=>{
-        if (child.type != "text") {
+        if (child.type != "text" && index != 0) {
             assert.equal(child.width, 20, "width of the first child",index,"must be 20");
             assert.equal(child.height, 20, "height of child",index," must be 20");
-            assert.equal(child.x, center_x + circle_r + (index % 2) * 25 + 10, "abscisse of child",index," must be", circle_r + 5);
-            assert.equal(child.y, center_y - circle_r + (index > 1 ? (index > 3 ? 50 : 25) : 0), "ordinate of child",index," must be", center_y);
+            assert.equal(child.x, center_x + circle_r + ((index-1) % 2) * 25 + 10, "abscisse of child",index," must be", circle_r + 5);
+            assert.equal(child.y, center_y - circle_r + ((index-1) > 1 ? ((index-1) > 3 ? 50 : 25) : 0), "ordinate of child",index," must be", center_y);
         }
     }); 
 });
-
-
 
 QUnit.test("Create an end event", (assert) => {
     var cp = new bpmnEvent("end_event");

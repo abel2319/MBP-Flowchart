@@ -9,6 +9,7 @@ class Gateway{
         this.component.form.c_svg.onmouseover = Events.mouseovercb;
         this.component.form.c_svg.onmouseleave = Events.mouseleavecb;
         this.component.form.c_svg.ondblclick = Events.doubleclickcb;
+        this.component.form.c_svg.onclick = Events.onclickcb;
     }
 
     addComponent(u, v, h, w){
@@ -50,7 +51,7 @@ class Gateway{
 
         this.component.form.addChild(text, (p,c)=>{
             c.setOffsetX(p.x - p.width/4);
-            c.setOffsetY(p.y + p.height + 5);
+            c.setOffsetY(p.y + p.height + 13);
         }, (p,c)=>{}, true);
         
         this.component.form.children.map(({child}) => {

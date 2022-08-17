@@ -1,6 +1,5 @@
 QUnit.module('task');
 
-
 QUnit.test("create panel of tools when mousedown event is applied", (assert) => {
     var ac = new Task();
     var center_x = ac.component.form.x;

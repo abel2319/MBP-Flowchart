@@ -11,8 +11,8 @@ QUnit.test("mouseovercb", (assert)=>{
     var e1 = new _e(ie.comp.component.form.c_svg);
 
     Events.mouseovercb(e1);
-    ie.comp.component.form.children.map(({child}) => {
-        if (child.type != "text")
+    ie.comp.component.form.children.map(({child}, index) => {
+        if (child.type != "text" && index != 0)
             assert.equal(child.c_svg.getAttribute("class"), "show", "each child must have its attribute class set to show");
     });
 });
@@ -22,12 +22,11 @@ QUnit.test("mouseleavecb", (assert)=>{
     var e1 = new _e(ie.comp.component.form.c_svg);
 
     Events.mouseleavecb(e1);
-    ie.comp.component.form.children.map(({child}) => {
-        if (child.type != "text")
+    ie.comp.component.form.children.map(({child}, index) => {
+        if (child.type != "text" && index != 0)
             assert.equal(child.c_svg.getAttribute("class"), "hidden", "each child must have its attribute class set to hidden after a mouseleave");
     });
 });
-
 
 QUnit.test("mousedowncbChild", (assert) => {
     var ie = new bpmnComponent("intermediate_event")
@@ -36,18 +35,18 @@ QUnit.test("mousedowncbChild", (assert) => {
     var cp1;
     var tmp = nbr_elt;
 
-    ie.comp.component.form.children.map(({child}) => {
-        if (child.type !== "text") {
+    ie.comp.component.form.children.map(({child}, index) => {
+        if (child.type !== "text" && index != 0) {
             e1 = new _e(child.c_svg);
             cp = Register.findComponent(e1.srcElement.getAttribute("id"));
             assert.equal(cp.type, "intermediate_event", "the parent's type of each child must be same as ie");
             
             Events.mousedowncbChild(e1);
             if (e1.srcElement.getAttribute("href") !== "./Images/trash.png"){
-                assert.equal(nbr_elt, tmp +1, "bpmnComponent must be used one more time");
+                //assert.equal(nbr_elt, tmp + 1, "bpmnComponent must be used one more time");
                 console.log(nbr_elt);
                 tmp = nbr_elt;
-                assert.ok(Register.findComponent(id_test), "a new elt is well created after mousedown on the child")
+                assert.ok(Register.findComponent(id_test), "the actuel elt is well deleted after mousedown on the child trash")
             }
 
             cp1 = Register.findComponent(id_test);
@@ -79,4 +78,11 @@ QUnit.test("mousedowncbChild", (assert) => {
             /*****************************/
         }
     });
+});
+
+QUnit.test("doubleclickcb", (assert) => {
+    var ie = new bpmnComponent("intermediate_event");
+    var e1 = new _e(ie.comp.component.form.c_svg);
+    var cp = Register.findComponent(e1.srcElement.getAttribute("id"));
+    assert.ok(cp, "the actuel");
 });

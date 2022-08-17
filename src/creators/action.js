@@ -1,5 +1,5 @@
 class Task{
-    constructor(type = "task", prosp={x:200, y:100, height:50, width:50}){
+    constructor(type = "task"){
         this.type = type;
         //this.uuid = aya._uuid().generate();
         this.component;
@@ -11,6 +11,7 @@ class Task{
         this.component.form.c_svg.onmouseover = Events.mouseovercb;
         this.component.form.c_svg.onmouseleave = Events.mouseleavecb;
         this.component.form.c_svg.ondblclick = Events.doubleclickcb;
+        this.component.form.c_svg.onclick = Events.onclickcb;
     }
 
     addComponent(u, v, h, w){
@@ -25,7 +26,7 @@ class Task{
         var rectangle = aya.Image(140,100, 20, 20, "./Images/rectangle.png", "rectangle");
         var trash = aya.Image(140,100, 20, 20, "./Images/trash.png", "trash");
         var endEvent = aya.Image(140,100, 20, 20, "./Images/endEvent.png", "endEvent");
-        var text = aya.Text(0,0,"abel");
+        var text = aya.Text(0,0,"");
 
         this.component.form.addChild(circle, (p, c)=>{
             c.x = (p.x + this.component.form.width / 2 + 30);
