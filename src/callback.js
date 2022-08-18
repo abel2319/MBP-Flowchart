@@ -125,25 +125,50 @@ class Events{
         console.log(document.getElementById(id));
         
         text.style.visibility = "visible";
-        text.style.left = cp.comp.component.form.x + "px";
-        text.style.top = (cp.comp.component.form.y + 55) + "px";
         
-        cp.comp.component.form.children.map(({child})=>{
-            if (child.type == "text"){
-                console.log("field_text");
-                text_input.value = child.text;
-                console.log(text_input.value);
-                text_input.onkeydown = (event)=>{
-                    if (event.key == "Enter"){
-                        console.log(event.key);
-                        child.text = text_input.value;
-                        child.removeFromDOM();
-                        child.draw();
-                        text.style.visibility = "hidden";
-                    }
-                };
-            }
-        });
+        if (cp.type == "link") {
+            text.style.left = cp.line.x + "px";
+            text.style.top = (cp.line.y + 10) + "px";
+            cp.line.children.map(({child}, index)=>{
+                if (child.type == "text"){
+                    console.log("field_text");
+                    text_input.value = child.text;
+                    console.log(text_input.value);
+                    text_input.onkeydown = (event)=>{
+                        if (event.key == "Enter"){
+                            console.log(event.key);
+                            child.text = text_input.value;
+                            child.removeFromDOM();
+                            child.draw();
+                            text.style.visibility = "hidden";
+                        }
+                    };
+                }
+            });
+        }
+        else{
+            text.style.left = cp.comp.component.form.x + "px";
+            if (cp.comp.component.form.type == "circle")
+                text.style.top = (cp.comp.component.form.y + 20) + "px";
+            else
+                text.style.top = (cp.comp.component.form.y + cp.comp.component.form.width + 5) + "px";
+            cp.comp.component.form.children.map(({child})=>{
+                if (child.type == "text"){
+                    console.log("field_text");
+                    text_input.value = child.text;
+                    console.log(text_input.value);
+                    text_input.onkeydown = (event)=>{
+                        if (event.key == "Enter"){
+                            console.log(event.key);
+                            child.text = text_input.value;
+                            child.removeFromDOM();
+                            child.draw();
+                            text.style.visibility = "hidden";
+                        }
+                    };
+                }
+            });
+        }
     }
 
     static onclickcb(e){

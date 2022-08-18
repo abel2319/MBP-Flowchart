@@ -26,13 +26,13 @@ class Link{
         var text = aya.Text(0,0,"");
 
         this.line.addChild(trash, (p, c)=>{
-            c.x = (p.x + p.x / 2);
+            c.x = (p.x);
             c.y = (p.y) + 5;
         }, (p, c)=>{}, true);
 
         this.line.addChild(text, (p,c)=>{
-            c.setOffsetX(p.x + 20);
-            c.setOffsetY(p.y + p.y/6);
+            c.setOffsetX(p.x + 25);
+            c.setOffsetY(p.y + 5);
         }, (p,c)=>{}, true);
 
         this.line.children.map(({child}, index) => {
