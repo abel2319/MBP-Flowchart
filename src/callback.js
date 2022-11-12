@@ -56,7 +56,6 @@ class Events{
                 });
             }
         }, 3000);
-
     }
 
     static mousedowncbChild(e){
@@ -98,7 +97,7 @@ class Events{
             id_test = next.id;
             if (cp2.comp.component.form.type != "circle"){
                 next.comp.component.form.x = Number(cp2.comp.component.form.x) + 200;
-                next.comp.component.form.y = Number(cp2.comp.component.form.y);
+                next.comp.component.form.y = Number(cp2.comp.component.form.y) - 50;
             }
             else{
                 next.comp.component.form.x = Number(cp2.comp.component.form.x) + 200;
