@@ -10,4 +10,8 @@ The universal language of BPMN bridges the gap between technical developers, C-s
 A BPMN Diagram uses these symbols and elements to illustrate how the logic behind a workflow will function from start-to-finish. Like planning a route for a road trip, a BPMN Diagram pinpoints every action information will take throughout a workflow.
 
 ### BPMN Basics Symbols
-![BPMN basics elemets]('/Images/basics.png')
+![BPMN basics elemets](/Images/basics.png)
+
+
+
+    ![source](https://www.processmaker.com/blog/bpmn-diagram-and-symbols/#)
