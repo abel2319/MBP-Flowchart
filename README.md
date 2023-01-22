@@ -13,5 +13,8 @@ A BPMN Diagram uses these symbols and elements to illustrate how the logic behin
 ![BPMN basics elemets](/Images/basics.png)
 
 
+### BPMN Diagram Example
+[BPMN Diagram Example](/Images/bpmn-business-process-book-lending-example.png)
 
-    ![source](https://www.processmaker.com/blog/bpmn-diagram-and-symbols/#)
+
+[source](https://www.processmaker.com/blog/bpmn-diagram-and-symbols/#)
